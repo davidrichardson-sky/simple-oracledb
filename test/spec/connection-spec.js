@@ -6527,7 +6527,7 @@ describe('Connection Tests', function () {
                 callback(null, 'done');
             };
 
-            connection.executeFile(sqlFile, {
+            connection.executeFile(sqlFile, [], {
                 test: 1,
                 another: 'test'
             }, function (error, output) {
@@ -6555,7 +6555,7 @@ describe('Connection Tests', function () {
 
             global.Promise = PromiseLib;
 
-            var promise = connection.executeFile(sqlFile, {
+            var promise = connection.executeFile(sqlFile, [], {
                 test: 1,
                 another: 'test'
             });
@@ -6578,7 +6578,7 @@ describe('Connection Tests', function () {
             delete global.Promise;
 
             try {
-                connection.executeFile(sqlFile, {});
+                connection.executeFile(sqlFile, [], {});
             } catch (error) {
                 errorFound = true;
             }
@@ -6600,7 +6600,7 @@ describe('Connection Tests', function () {
                 callback(null, 'done');
             };
 
-            connection.executeFile(sqlFile, function (error, output) {
+            connection.executeFile(sqlFile, [], function (error, output) {
                 assert.isNull(error);
                 assert.strictEqual(output, 'done');
 
@@ -6618,7 +6618,7 @@ describe('Connection Tests', function () {
                 callback(new Error('test'));
             };
 
-            connection.executeFile(sqlFile, function (error) {
+            connection.executeFile(sqlFile, [], function (error) {
                 assert.isDefined(error);
 
                 done();
@@ -6636,7 +6636,7 @@ describe('Connection Tests', function () {
                 callback(new Error('test'));
             };
 
-            connection.executeFile(sqlFile, function (error) {
+            connection.executeFile(sqlFile, [], function (error) {
                 assert.isDefined(error);
 
                 done();
